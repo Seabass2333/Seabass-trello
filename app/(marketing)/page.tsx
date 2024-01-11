@@ -32,7 +32,7 @@ const Marketing = () => {
           Taskify help team move
         </h1>
         <div className='text-3xl md:text-6xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-4 p-2 rounded-md w-fit '>
-          work forward
+          <Link href='/select-org'>work forward</Link>
         </div>
       </div>
       <div
