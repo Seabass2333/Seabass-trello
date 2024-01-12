@@ -73,9 +73,9 @@ export const NavItem = ({
         <div className='flex items-center gap-x-2 '>
           <div className='w-7 h-7 relative'>
             <Image
-              fill
-              src={organization.imageUrl}
               alt='Organization'
+              src={organization.imageUrl}
+              fill
               className='rounded-sm object-cover'
             ></Image>
           </div>
@@ -102,6 +102,7 @@ export const NavItem = ({
     </AccordionItem>
   )
 }
+
 NavItem.Skeleton = function SkeletonNavItem() {
   return (
     <div className='flex items-center gap-x-2'>
