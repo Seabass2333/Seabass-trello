@@ -1,11 +1,17 @@
-// import { OrganizationSwitcher, auth } from '@clerk/nextjs'
+// 'use client'
 
 const OrganizationIdPage = () => {
-  // const { userId, orgId } = auth()
   return (
     <div>
-      {/* <OrganizationSwitcher hidePersonal></OrganizationSwitcher> */}
-      Organization Page
+      <form>
+        <input
+          type='text'
+          name='title'
+          required
+          placeholder='please enter'
+          className='border-black border p-1'
+        />
+      </form>
     </div>
   )
 }
