@@ -1,17 +1,17 @@
-// 'use client'
+import { db } from '@/lib/db'
+import Board from './board'
+import { Form } from './form'
 
-const OrganizationIdPage = () => {
+const OrganizationIdPage = async () => {
+  const boards = await db.board.findMany()
   return (
     <div>
-      <form>
-        <input
-          type='text'
-          name='title'
-          required
-          placeholder='please enter'
-          className='border-black border p-1'
-        />
-      </form>
+      <Form />
+      <div className='space-y-2'>
+        {boards.map((board) => (
+          <Board key={board.id} title={board.title} id={board.id} />
+        ))}
+      </div>
     </div>
   )
 }
