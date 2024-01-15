@@ -4,6 +4,7 @@ import { Form } from './form'
 
 const OrganizationIdPage = async () => {
   const boards = await db.board.findMany()
+
   return (
     <div>
       <Form />
