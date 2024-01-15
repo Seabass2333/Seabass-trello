@@ -63,7 +63,10 @@ export const NavItem = ({
   }
 
   return (
-    <AccordionItem value={organization.id} className='border-none'>
+    <AccordionItem
+      value={organization.id}
+      className='border-none'
+    >
       <AccordionTrigger
         onClick={() => onExpand(organization.id)}
         className={cn(

@@ -45,7 +45,11 @@ const Marketing = () => {
         improve my possible in the future competed, so do not be a rat, just do
         it!
       </div>
-      <Button className='mt-4' size='lg' asChild>
+      <Button
+        className='mt-4'
+        size='lg'
+        asChild
+      >
         <Link href='/sign-up'>get Taskify for free</Link>
       </Button>
     </div>

@@ -10,13 +10,22 @@ interface FormInputProps {
 export const FormInput = ({ errors }: FormInputProps) => {
   return (
     <div>
-      <Input type='text' name='title' required placeholder='please enter' className='border-black border p-1' />
+      <Input
+        type='text'
+        name='title'
+        required
+        placeholder='please enter'
+        className='border-black border p-1'
+      />
 
       {errors?.title && (
         <div>
           {errors.title.map((error) => {
             return (
-              <p key={error} className='text-rose-500'>
+              <p
+                key={error}
+                className='text-rose-500'
+              >
                 {error}
               </p>
             )

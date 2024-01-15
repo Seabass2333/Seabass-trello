@@ -9,7 +9,10 @@ const Board = ({ title, id }: BoardProps) => {
   const deleteBoardById = deleteBoard.bind(null, id)
 
   return (
-    <form action={deleteBoardById} className='flex items-center gap-x-2'>
+    <form
+      action={deleteBoardById}
+      className='flex items-center gap-x-2'
+    >
       <p>Board title: {title}</p>
       <FormDelete />
     </form>

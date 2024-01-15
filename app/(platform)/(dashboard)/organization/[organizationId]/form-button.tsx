@@ -5,7 +5,12 @@ export const FormButton = () => {
   const { pending } = useFormStatus()
 
   return (
-    <Button disabled={pending} type='submit' size='sm' className='ml-4'>
+    <Button
+      disabled={pending}
+      type='submit'
+      size='sm'
+      className='mt-2'
+    >
       Submit!
     </Button>
   )

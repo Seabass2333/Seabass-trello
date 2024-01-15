@@ -22,7 +22,10 @@ export const Navbar = () => {
         >
           <Link href='/'>Create</Link>
         </Button>
-        <Button size='sm' className='rounded-sm md:hidden'>
+        <Button
+          size='sm'
+          className='rounded-sm md:hidden'
+        >
           <Plus className='w-4 h-4'></Plus>
         </Button>
       </div>

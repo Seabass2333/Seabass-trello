@@ -1,10 +1,8 @@
 'use client'
 
 import { create } from '@/actions/create-board'
-import { Button } from '@/components/ui/button'
 import { useFormState } from 'react-dom'
-import { FormInput } from './input-form'
-import { error } from 'console'
+import { FormInput } from './form-input'
 import { FormButton } from './form-button'
 
 export const Form = () => {
