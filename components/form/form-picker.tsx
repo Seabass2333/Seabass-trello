@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 import { unsplash } from '@/lib/unsplash'
-// import { defaultImages } from '@/constants/images'
+import { defaultImages } from '@/constants/images'
 
 import { FormErrors } from './form-errors'
 
@@ -20,7 +20,7 @@ interface FormPickerProps {
 export const FormPicker = ({ id, errors }: FormPickerProps) => {
   const { pending } = useFormStatus()
 
-  const [images, setImages] = useState<Array<Record<string, any>>>([])
+  const [images, setImages] = useState<Array<Record<string, any>>>(defaultImages)
   const [isLoading, setIsLoading] = useState(true)
   const [selectedImageId, setSelectedImageId] = useState(null)
 
@@ -32,7 +32,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
           count: 9
         })
 
-        if (result && result.response) {
+        if (result?.response) {
           const newImages = result.response as Array<Record<string, any>>
           setImages(newImages)
         } else {
@@ -40,7 +40,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
         }
       } catch (error) {
         console.log(error)
-        setImages([])
+        setImages(defaultImages)
       } finally {
         setIsLoading(false)
       }
@@ -63,16 +63,13 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
         {images.map((image) => (
           <div
             key={image.id}
-            className={cn(
-              'cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted',
-              pending && 'opacity-50 hover:opacity-50 cursor-auto'
-            )}
+            className={cn('cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted', pending && 'opacity-50 hover:opacity-50 cursor-auto')}
             onClick={() => {
               if (pending) return
               setSelectedImageId(image.id)
             }}
           >
-            {/* <input
+            <input
               type='radio'
               id={id}
               name={id}
@@ -80,14 +77,14 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               checked={selectedImageId === image.id}
               disabled={pending}
               value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
-            /> */}
+            />
             <Image
               src={image.urls.thumb}
               alt='Unsplash image'
               className='object-cover rounded-sm'
               fill
             />
-            {/* {selectedImageId === image.id && (
+            {selectedImageId === image.id && (
               <div className='absolute inset-y-0 h-full w-full bg-black/30 flex items-center justify-center'>
                 <Check className='h-4 w-4 text-white' />
               </div>
@@ -98,7 +95,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               className='opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate text-white hover:underline p-1 bg-black/50'
             >
               {image.user.name}
-            </Link> */}
+            </Link>
           </div>
         ))}
       </div>

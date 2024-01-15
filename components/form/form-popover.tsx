@@ -5,12 +5,7 @@ import { toast } from 'sonner'
 import { X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  PopoverClose
-} from '@/components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from '@/components/ui/popover'
 import { useAction } from '@/hooks/use-action'
 import { Button } from '@/components/ui/button'
 import { createBoard } from '@/actions/create-board'
@@ -27,12 +22,7 @@ interface FormPopoverProps {
   sideOffset?: number
 }
 
-export const FormPopover = ({
-  children,
-  side = 'bottom',
-  align,
-  sideOffset = 0
-}: FormPopoverProps) => {
+export const FormPopover = ({ children, side = 'bottom', align, sideOffset = 0 }: FormPopoverProps) => {
   const proModal = useProModal()
   const router = useRouter()
   const closeRef = useRef<ElementRef<'button'>>(null)
@@ -65,9 +55,7 @@ export const FormPopover = ({
         side={side}
         sideOffset={sideOffset}
       >
-        <div className='text-sm font-medium text-center text-neutral-600 pb-4'>
-          Create board
-        </div>
+        <div className='text-sm font-medium text-center text-neutral-600 pb-4'>Create board</div>
         <PopoverClose
           ref={closeRef}
           asChild
