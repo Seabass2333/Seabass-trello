@@ -20,7 +20,8 @@ interface FormPickerProps {
 export const FormPicker = ({ id, errors }: FormPickerProps) => {
   const { pending } = useFormStatus()
 
-  const [images, setImages] = useState<Array<Record<string, any>>>(defaultImages)
+  const [images, setImages] =
+    useState<Array<Record<string, any>>>(defaultImages)
   const [isLoading, setIsLoading] = useState(true)
   const [selectedImageId, setSelectedImageId] = useState(null)
 
@@ -63,7 +64,10 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
         {images.map((image) => (
           <div
             key={image.id}
-            className={cn('cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted', pending && 'opacity-50 hover:opacity-50 cursor-auto')}
+            className={cn(
+              'cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted',
+              pending && 'opacity-50 hover:opacity-50 cursor-auto'
+            )}
             onClick={() => {
               if (pending) return
               setSelectedImageId(image.id)
@@ -75,6 +79,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               name={id}
               className='hidden'
               checked={selectedImageId === image.id}
+              readOnly
               disabled={pending}
               value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
             />
@@ -82,6 +87,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               src={image.urls.thumb}
               alt='Unsplash image'
               className='object-cover rounded-sm'
+              sizes='auto'
               fill
             />
             {selectedImageId === image.id && (
