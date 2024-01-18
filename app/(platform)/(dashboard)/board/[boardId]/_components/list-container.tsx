@@ -1,18 +1,19 @@
 'use client'
 
-import { ListWithCard } from '@/types'
+import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+
+import { ListWithCards } from '@/types'
+import { useAction } from '@/hooks/use-action'
+import { updateListOrder } from '@/actions/update-list-order'
+import { updateCardOrder } from '@/actions/update-card-order'
 
 import { ListForm } from './list-form'
 import { ListItem } from './list-item'
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'
-import { useAction } from '@/hooks/use-action'
-import { updateListOrder } from '@/actions/update-list-order'
-import { toast } from 'sonner'
-import { updateCardOrder } from '@/actions/update-card-order'
 
 interface ListContainerProps {
-  data: ListWithCard[]
+  data: ListWithCards[]
   boardId: string
 }
 
@@ -28,19 +29,19 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   const [orderedData, setOrderedData] = useState(data)
 
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
-    onSuccess(data) {
+    onSuccess: () => {
       toast.success('List reordered')
     },
-    onError(error) {
+    onError: (error) => {
       toast.error(error)
     }
   })
 
   const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
-    onSuccess(data) {
+    onSuccess: () => {
       toast.success('Card reordered')
     },
-    onError(error) {
+    onError: (error) => {
       toast.error(error)
     }
   })
@@ -56,7 +57,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
       return
     }
 
-    // Dropped in the same position
+    // if dropped in the same position
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -71,14 +72,10 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
       )
 
       setOrderedData(items)
-
-      executeUpdateListOrder({
-        items,
-        boardId
-      })
+      executeUpdateListOrder({ items, boardId })
     }
 
-    // Cards
+    // User moves a card
     if (type === 'card') {
       let newOrderedData = [...orderedData]
 
@@ -94,12 +91,12 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         return
       }
 
-      // Check if Cards exists on the sourceList
+      // Check if cards exists on the sourceList
       if (!sourceList.cards) {
         sourceList.cards = []
       }
 
-      // Check if cards exist on the destinationList
+      // Check if cards exists on the destList
       if (!destList.cards) {
         destList.cards = []
       }
@@ -112,17 +109,18 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
           destination.index
         )
 
-        reorderedCards.forEach((card, ind) => {
-          card.order = ind
+        reorderedCards.forEach((card, idx) => {
+          card.order = idx
         })
 
         sourceList.cards = reorderedCards
 
         setOrderedData(newOrderedData)
         executeUpdateCardOrder({
-          boardId,
+          boardId: boardId,
           items: reorderedCards
         })
+        // User moves the card to another list
       } else {
         // Remove card from the source list
         const [movedCard] = sourceList.cards.splice(source.index, 1)
@@ -144,7 +142,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
 
         setOrderedData(newOrderedData)
         executeUpdateCardOrder({
-          boardId,
+          boardId: boardId,
           items: destList.cards
         })
       }
@@ -164,15 +162,16 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
             ref={provided.innerRef}
             className='flex gap-x-3 h-full'
           >
-            {orderedData.map((item, index) => {
+            {orderedData.map((list, index) => {
               return (
                 <ListItem
-                  key={item.id}
+                  key={list.id}
                   index={index}
-                  data={item}
-                ></ListItem>
+                  data={list}
+                />
               )
             })}
+            {provided.placeholder}
             <ListForm />
             <div className='flex-shrink-0 w-1' />
           </ol>
