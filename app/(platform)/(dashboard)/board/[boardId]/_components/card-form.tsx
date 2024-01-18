@@ -47,8 +47,9 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
       e
     ) => {
       if (e.key === 'Enter' && !e.shiftKey) {
+        console.log('111')
+
         e.preventDefault()
-        enableEditing()
         formRef.current?.requestSubmit()
       }
     }
@@ -68,6 +69,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
     if (isEditing) {
       return (
         <form
+          ref={formRef}
           action={onSubmit}
           className='m-1 py-0.5 px-1 space-y-4'
         >
