@@ -4,6 +4,6 @@ export type ListWithCard = List & {
   cards: Card[];
 }
 
-export type CardWithCard = Card & {
+export type CardWithList = Card & {
   list: List
 }
