@@ -44,7 +44,7 @@ export const BoardList = async () => {
             }}
           >
             {/* {board} */}
-            <div className='absolute inset-0 ng-black/30 group-hover:bg-black/40 transition' />
+            <div className='absolute inset-0 bg-black/30 group-hover:bg-black/40 transition' />
             <p className='relative font-semibold text-white'>{board.title}</p>
           </Link>
         ))}

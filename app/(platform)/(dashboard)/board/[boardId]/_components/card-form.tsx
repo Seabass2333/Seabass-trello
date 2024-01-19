@@ -47,8 +47,6 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
       e
     ) => {
       if (e.key === 'Enter' && !e.shiftKey) {
-        console.log('111')
-
         e.preventDefault()
         formRef.current?.requestSubmit()
       }

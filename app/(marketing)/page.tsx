@@ -45,11 +45,11 @@ const Marketing = () => {
         improve my possible in the future competed! <br />
         <span className='text-red-700'>
           Important: This is a mock app, all information on this site is
-          virtual, please do not feel free to enter the real payment
-          information, or suffer the consequences!
+          virtual, please do not enter any real payment information, or suffer
+          the consequences!
         </span>
         <br />
-        By the author - Luhan
+        Have a good time!
       </div>
       <Button
         className='mt-4'
