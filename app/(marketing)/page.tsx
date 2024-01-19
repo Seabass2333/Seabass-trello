@@ -44,9 +44,9 @@ const Marketing = () => {
         Collaborate, manage projects, and do something different that can be
         improve my possible in the future competed! <br />
         <span className='text-red-700'>
-          Important: All information on this site is virtual, please do not feel
-          free to enter the real payment information, or suffer the
-          consequences!
+          Important: This is a mock app, all information on this site is
+          virtual, please do not feel free to enter the real payment
+          information, or suffer the consequences!
         </span>
         <br />
         By the author - Luhan
